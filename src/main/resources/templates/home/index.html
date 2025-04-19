@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <title>Locadora 2001</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+    <script src="https://kit.fontawesome.com/006642858d.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div th:replace="~{fragmentos/fragmentos :: cabecalho}"></div>
+    <section class="neo-section" style="background-image: url('img/bg-index.jpg');">
+    <div class="sombra"></div>
+
+    <div class="center neo-container">
+        <h1 class="texto-centro">Locadora 2001</h1>
+
+    <div class="botoes">
+
+    <div class="wm">
+        <a th:href="@{filme/formulario}" class="btn-index">Filmes</a>
+    </div>
+
+    <div class="wm">
+        <a th:href="@{filme/listagem}" class="btn-index justify-content-center">Atores</a>
+    </div>
+
+    <div class="clear"></div>
+        </div>
+    </div>
+    </section>
+
+   <!--  <!-- Inicio do Modal -->
+   
+    <div th:replace="fragmentos/fragmentos :: rodape"></div>
+    <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
+
