@@ -4,9 +4,9 @@ package br.com.carometro.usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.locadora.exception.CriptoExistsException;
-import br.com.locadora.exception.EmailExistsException;
-import br.com.locadora.exception.ServiceExc;
+import br.com.carometro.exception.CriptoExistsException;
+import br.com.carometro.exception.EmailExistsException;
+import br.com.carometro.exception.ServiceExc;
 
 import java.security.NoSuchAlgorithmException;
 

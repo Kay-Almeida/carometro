@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação de Perfil</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div th:replace="~{fragmentos/fragmentos :: cabecalho}"></div>
+
+<div class="container mt-5">
+    <h2>Avaliação de Perfil</h2>
+    <form method="post" th:action="@{/avaliacaoPerfil}" th:object="${avaliacaoPerfil}">
+        <input type="hidden" th:if="*{id}" th:field="*{id}"/>
+
+        <div class="form-group">
+            <label for="perfil">Perfil</label>
+            <select class="form-control" th:field="*{perfil.id}">
+                <option th:each="p : ${perfis}" th:value="${p.id}" th:text="${p.nome}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+    		<label class="form-label">Comentários</label>
+    		<textarea class="form-control" th:field="*{comentario}" rows="3"></textarea>
+		</div>
+
+		<div class="mb-3">
+    		<label class="form-label">Status*</label>
+    		<select class="form-select" th:field="*{status}" required>
+        	<option th:each="status : ${T(br.com.carometro.perfil.StatusPerfil).values()}" 
+                th:value="${status}" 
+                th:text="${status.name()}"></option>
+    		</select>
+		</div>
+
+        <div class="form-group">
+            <label for="nota">Nota</label>
+            <input type="number" step="0.01" class="form-control" th:field="*{nota}" min="0" max="10" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a th:href="@{/avaliacaoPerfil}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
+</body>
+</html>

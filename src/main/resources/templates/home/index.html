@@ -3,42 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carômetro</title>
+
+    <!-- Estilos -->
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
-    <title>Locadora 2001</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
-    <script src="https://kit.fontawesome.com/006642858d.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+
+    <!-- Ícones -->
+    <script src="https://kit.fontawesome.com/006642858d.js" crossorigin="anonymous" defer></script>
 </head>
 <body>
 
+    <!-- Cabeçalho -->
     <div th:replace="~{fragmentos/fragmentos :: cabecalho}"></div>
+
+    <!-- Conteúdo principal -->
     <section class="neo-section" style="background-image: url('img/bg-index.jpg');">
-    <div class="sombra"></div>
+        <div class="sombra"></div>
 
-    <div class="center neo-container">
-        <h1 class="texto-centro">Locadora 2001</h1>
+        <div class="center neo-container">
+            <h1 class="texto-centro">Carômetro</h1>
 
-    <div class="botoes">
+            <div class="botoes">
+                <div class="wm">
+                    <a th:href="@{/usuario/listagem}" class="btn-index">Usuários</a>
+                </div>
 
-    <div class="wm">
-        <a th:href="@{filme/formulario}" class="btn-index">Filmes</a>
-    </div>
+                <div class="wm">
+                    <a th:href="@{/perfil/listagem}" class="btn-index">Perfis</a>
+                </div>
 
-    <div class="wm">
-        <a th:href="@{filme/listagem}" class="btn-index justify-content-center">Atores</a>
-    </div>
+                <div class="wm">
+                    <a th:href="@{/avaliacaoPerfil/lista}" class="btn-index">Avaliações</a>
+                </div>
 
-    <div class="clear"></div>
+                <div class="wm">
+                    <a th:href="@{/logAcesso/lista}" class="btn-index">Logs de Acesso</a>
+                </div>
+
+                <div class="clear"></div>
+            </div>
         </div>
-    </div>
     </section>
 
-   <!--  <!-- Inicio do Modal -->
-   
-    <div th:replace="fragmentos/fragmentos :: rodape"></div>
+    <!-- Rodapé -->
+    <div th:replace="~{fragmentos/fragmentos :: rodape}"></div>
+
+    <!-- Scripts -->
     <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
-

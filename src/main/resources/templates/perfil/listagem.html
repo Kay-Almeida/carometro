@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listagem de Perfis</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+</head>
+<body>
+<div th:replace="~{fragmentos/fragmentos :: cabecalho}"></div>
+
+<div class="container mt-4">
+    <h2>Perfis</h2>
+    <a th:href="@{/perfil/formulario}" class="btn btn-success mb-3">Novo Perfil</a>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+		<tr th:each="perfil : ${listaPerfis}">
+    		<td th:text="${perfil.usuario.nomeCompleto}"></td>
+    		<td th:text="${perfil.curso}"></td>
+    		<td>
+        	<span th:text="${perfil.statusPerfil}" 
+              	th:class="${perfil.statusPerfil == 'APROVADO'} ? 'badge bg-success' : 
+                        	${perfil.statusPerfil == 'PENDENTE'} ? 'badge bg-warning' : 'badge bg-danger'">
+        	</span>
+    </td>
+		</tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="~{fragmentos/fragmentos :: rodape}"></div>
+</body>
+</html>

@@ -12,4 +12,6 @@ public interface PerfilRepository extends JpaRepository<Perfil, Long> {
 
     @Query("SELECT p FROM Perfil p WHERE p.usuario.id = :usuarioId")
     Perfil buscarPorUsuarioId(Long usuarioId);
+    Perfil findByUsuarioId(Long usuarioId);  // Retorna null se não encontrar
+    List<Perfil> findByStatusPerfil(StatusPerfil status);
 }

@@ -4,42 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
-    <title>Locadora 2001</title>
+    <title>Carômetro</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
     <script src="https://kit.fontawesome.com/006642858d.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
 </head>
-    <body>
-    <!-- Header -->
-    <header th:fragment="cabecalho">
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #7FDCE8FF">
-            <a th:href="@{/index}" class="navbar-brand" >
-                <img src="/img/2001.png" width="80px"/>
-            </a>
+<body>
+<!-- Header -->
+<header th:fragment="cabecalho">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #7FDCE8FF">
+        <a th:href="@{/index}" class="navbar-brand">
+            <img src="/img/2001.png" width="80px" alt="Logo Carômetro"/>
+        </a>
 
-            <div id="navMobile" class="navbar-collapse collapse justify-content-end">
+        <div id="navMobile" class="navbar-collapse collapse justify-content-end">
 
-                <a th:href="@{/index}" class="btn-nav nav-item nav-link"><i class="bi bi-house-door"></i> Home</a>
-                <a class="btn-nav nav-item nav-link" th:href="@{/filme/formulario}"><i class="bi bi-film"></i> Filme</a>
-                <a class="btn-nav nav-item nav-link" th:href="@{/filme}"><i class="bi bi-film"></i> Listar Filme</a>
-                <a class="btn-nav nav-item nav-link" th:href="@{/ator/formulario}" ><i class="bi bi-person-plus"></i> Ator</a>
-                <a class="btn-nav nav-item nav-link" th:href="@{/filme/buscaromdb}" ><i class="bi bi-palette2"></i>Buscar OMDB</a>
-                <form action="/logout" method="post">
-                <button type="submit" class="btn-nav-sair nav-item nav-link btn-danger"><i class="bi bi-box-arrow-right"></i>Sair</button>
-                </form>
+            <a th:href="@{/index}" class="btn-nav nav-item nav-link"><i class="bi bi-house-door"></i> Home</a>
+            <a class="btn-nav nav-item nav-link" th:href="@{/usuario/listagem}"><i class="bi bi-person"></i> Usuários</a>
+            <a class="btn-nav nav-item nav-link" th:href="@{/perfil/listagem}"><i class="bi bi-card-list"></i> Perfis</a>
+            <a class="btn-nav nav-item nav-link" th:href="@{/perfil/pendentes}"><i class="bi bi-card-list"></i> Perfis Pendentes</a>
+            <a class="btn-nav nav-item nav-link" th:href="@{/avaliacaoPerfil/lista}"><i class="bi bi-star-half"></i> Avaliações</a>
+            <a class="btn-nav nav-item nav-link" th:href="@{/logAcesso/lista}"><i class="bi bi-clock-history"></i> Logs</a>
 
-            </div>
-        </nav>
-    </header>
-    <!-- Footer -->
-    <footer th:fragment="rodape">
-        <div class="rodape">
-           
+            <form action="/logout" method="post" class="d-inline">
+                <button type="submit" class="btn-nav-sair nav-item nav-link btn btn-danger"><i class="bi bi-box-arrow-right"></i> Sair</button>
+            </form>
         </div>
-    </footer>
+    </nav>
+</header>
 
-        <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
-        <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-    </body>
+<!-- Footer -->
+<footer th:fragment="rodape">
+    <div class="rodape text-center p-3" style="background-color: #f1f1f1;">
+        <span>© 2025 Carômetro — Todos os direitos reservados</span>
+    </div>
+</footer>
+
+<script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
 </html>

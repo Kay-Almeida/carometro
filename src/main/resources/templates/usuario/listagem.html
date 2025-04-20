@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listagem de Usuários</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{fragmentos/fragmentos :: cabecalho}"></div>
+
+<div class="container mt-4">
+    <h2>Usuários</h2>
+    <a th:href="@{/usuario/formulario}" class="btn btn-success mb-3">Novo Usuário</a>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Perfil</th>
+            <th>Tipo</th>
+    		<th>Status</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="usuario : ${listaUsuarios}">
+            <td th:text="${usuario.nome}"></td>
+            <td th:text="${usuario.email}"></td>
+            <td th:text="${usuario.perfil.nome}"></td>
+            <td th:text="${usuario.tipoUsuario}"></td>
+    		<td>
+        		<span th:text="${usuario.statusPerfil}" 
+              			th:class="${'badge ' + 
+                         (usuario.statusPerfil == 'ATIVO' ? 'bg-success' : 
+                          usuario.statusPerfil == 'PENDENTE' ? 'bg-warning' : 'bg-danger')}">
+        		</span>
+    		</td>
+            <td>
+                <a th:href="@{/usuario/editar/{id}(id=${usuario.id})}" class="btn btn-warning btn-sm">Editar</a>
+                <a th:href="@{/usuario/excluir/{id}(id=${usuario.id})}" class="btn btn-danger btn-sm">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="~{fragmentos/fragmentos :: rodape}"></div>
+</body>
+</html>

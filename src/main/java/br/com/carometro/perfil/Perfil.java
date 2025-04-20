@@ -21,13 +21,24 @@ public class Perfil {
     private String comentarioFoto;
     private String comentarioLivre;
     private String urlFoto;
+    
+    @Enumerated(EnumType.STRING)
+    private StatusPerfil statusPerfil;
 
     @OneToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
 
     // Getters e Setters
+    
+    public StatusPerfil getStatusPerfil() {
+    	return statusPerfil; 
+    }
 
+    public void setStatusPerfil(StatusPerfil statusPerfil) {
+    	this.statusPerfil = statusPerfil; 
+    }
+    
     public Long getId() {
         return id;
     }
@@ -123,4 +134,6 @@ public class Perfil {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+    
+    
 }

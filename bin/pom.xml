@@ -8,11 +8,11 @@
         <version>3.4.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>br.com.2001</groupId>
-    <artifactId>locadora</artifactId>
+    <groupId>br.com.carometro</groupId>
+    <artifactId>carometro</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>locadora</name>
-    <description>Locadora 2001</description>
+    <name>Carômetro</name>
+    <description>Carômetro</description>
     <properties>
         <java.version>17</java.version>
     </properties>

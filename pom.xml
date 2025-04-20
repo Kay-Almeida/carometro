@@ -20,11 +20,11 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-	<groupId>br.com.locadora</groupId>
-	<artifactId>locadora</artifactId>
+	<groupId>br.com.carometro</groupId>
+	<artifactId>carometro</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>locadora</name>
-	<description>Locadora 2001</description>
+	<name>Carômetro</name>
+	<description>Carômetro</description>
 	<url/>
 	<licenses>
 		<license/>

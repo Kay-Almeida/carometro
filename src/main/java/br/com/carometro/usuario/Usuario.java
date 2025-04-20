@@ -1,7 +1,5 @@
 package br.com.carometro.usuario;
 
-import br.com.carometro.perfil.StatusPerfil;
-import br.com.carometro.perfil.TipoUsuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
@@ -28,8 +26,8 @@ public class Usuario {
 
     private boolean consentimentoDados;
 
-    @Enumerated(EnumType.STRING)
-    private StatusPerfil statusPerfil;
+//    @Enumerated(EnumType.STRING)
+//    private StatusPerfil statusPerfil;
 
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Perfil perfil;
@@ -84,13 +82,13 @@ public class Usuario {
         this.consentimentoDados = consentimentoDados;
     }
 
-    public StatusPerfil getStatusPerfil() {
-        return statusPerfil;
-    }
-
-    public void setStatusPerfil(StatusPerfil statusPerfil) {
-        this.statusPerfil = statusPerfil;
-    }
+//    public StatusPerfil getStatusPerfil() {
+//        return statusPerfil;
+//    }
+//
+//    public void setStatusPerfil(StatusPerfil statusPerfil) {
+//        this.statusPerfil = statusPerfil;
+//    }
 
     public Perfil getPerfil() {
         return perfil;

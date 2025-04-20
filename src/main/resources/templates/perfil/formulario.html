@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Egresso</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+</head>
+<body>
+    <div th:replace="~{fragmentos/fragmentos :: cabecalho}"></div>
+
+    <div class="container mt-4 mb-5">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h2 class="mb-0">
+                    <i class="bi bi-person-badge"></i> 
+                    <span th:text="${perfil.id} ? 'Editar Perfil' : 'Novo Perfil'"></span>
+                </h2>
+            </div>
+            
+            <div class="card-body">
+                <form th:action="@{/perfil/salvar}" method="post" enctype="multipart/form-data" th:object="${perfil}">
+                    <input type="hidden" th:field="*{id}" />
+                    <input type="hidden" th:field="*{usuario.id}" />
+                    
+                    <!-- Seção: Foto do Perfil -->
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <img th:src="${perfil.urlFoto} ? @{'/uploads/' + ${perfil.urlFoto}} : @{'/img/default-profile.png'}" 
+                                     class="img-thumbnail mb-3" 
+                                     id="fotoPreview" 
+                                     style="width: 200px; height: 200px; object-fit: cover;">
+                                
+                                <div class="form-group">
+                                    <label for="foto" class="form-label">Foto do Perfil</label>
+                                    <input type="file" class="form-control" id="foto" name="foto" accept="image/*">
+                                    <small class="text-muted">Recomendação: Foto individual (ex: "só eu em família")</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-8">
+                            <!-- Dados Pessoais -->
+                            <div class="form-group mb-3">
+                                <label for="nomeCompleto" class="form-label">Nome Completo</label>
+                                <input type="text" class="form-control" th:value="${perfil.usuario.nomeCompleto}" readonly>
+                            </div>
+                            
+                            <div class="form-group mb-3">
+                                <label for="curso" class="form-label">Curso realizado na instituição*</label>
+                                <input type="text" class="form-control" th:field="*{curso}" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Seção: Links Profissionais -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <h5><i class="bi bi-link-45deg"></i> Links Profissionais</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group mb-3">
+                                        <label for="urlLinkedIn" class="form-label">LinkedIn</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-linkedin"></i></span>
+                                            <input type="url" class="form-control" th:field="*{urlLinkedIn}" placeholder="https://linkedin.com/in/seu-perfil">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="form-group mb-3">
+                                        <label for="urlGitHub" class="form-label">GitHub</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-github"></i></span>
+                                            <input type="url" class="form-control" th:field="*{urlGitHub}" placeholder="https://github.com/seu-usuario">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="form-group mb-3">
+                                        <label for="urlLattes" class="form-label">Plataforma Lattes</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-file-earmark-text"></i></span>
+                                            <input type="url" class="form-control" th:field="*{urlLattes}" placeholder="http://lattes.cnpq.br/seu-id">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Seção: Trabalho Atual -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <h5><i class="bi bi-briefcase"></i> Trabalho Atual</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group mb-3">
+                                <label for="localTrabalho" class="form-label">Onde você trabalha atualmente?*</label>
+                                <input type="text" class="form-control" th:field="*{localTrabalho}" required>
+                            </div>
+                            
+                            <div class="form-group mb-3">
+                                <label for="funcao" class="form-label">O que você faz lá?*</label>
+                                <input type="text" class="form-control" th:field="*{funcao}" required>
+                            </div>
+                            
+                            <div class="form-group mb-3">
+                                <label for="tempoTrabalho" class="form-label">Há quanto tempo trabalha neste local?*</label>
+                                <input type="text" class="form-control" th:field="*{tempoTrabalho}" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Seção: Comentários -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <h5><i class="bi bi-chat-square-text"></i> Comentários</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group mb-3">
+                                <label for="comentarioFoto" class="form-label">Comentário sobre sua foto</label>
+                                <textarea class="form-control" th:field="*{comentarioFoto}" rows="2" 
+                                          placeholder="Algo divertido, leve ou marcante sobre esta foto"></textarea>
+                            </div>
+                            
+                            <div class="form-group mb-3">
+                                <label for="comentarioLivre" class="form-label">Comentário livre (opcional)</label>
+                                <textarea class="form-control" th:field="*{comentarioLivre}" rows="3"
+                                          placeholder="Compartilhe curiosidades, motivações, aprendizados..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Termos de Uso -->
+                    <div class="form-group mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" th:field="*{usuario.consentimentoDados}" id="consentimento" required>
+                            <label class="form-check-label" for="consentimento">
+                                Li e concordo com os termos de uso e a publicação da minha imagem e informações no sistema*
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Botões de Ação -->
+                    <div class="d-flex justify-content-between">
+                        <a th:href="@{/perfil/listagem}" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Voltar
+                        </a>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-circle"></i> 
+                            <span th:text="${perfil.id} ? 'Atualizar Perfil' : 'Salvar Perfil'"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="~{fragmentos/fragmentos :: rodape}"></div>
+
+    <!-- Scripts -->
+    <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    
+    <script>
+        // Preview da foto selecionada
+        document.getElementById('foto').addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('fotoPreview').src = e.target.result;
+                };
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+        
+        // Validação antes de enviar
+        document.querySelector('form').addEventListener('submit', function(e) {
+            if (!document.getElementById('consentimento').checked) {
+                e.preventDefault();
+                alert('Você deve concordar com os termos de uso para enviar o perfil.');
+            }
+        });
+    </script>
+</body>
+</html>

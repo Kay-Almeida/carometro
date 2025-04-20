@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Usuário</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+</head>
+<body>
+<div th:replace="~{fragmentos/fragmentos :: cabecalho}"></div>
+<div class="alert alert-info" role="alert" th:if="${usuario.id == null}">Campos marcados com * são obrigatórios</div>    
+<div class="container mt-4">
+    <h2>Cadastro de Usuário</h2>
+    <form th:action="@{/usuario/salvar}" th:object="${usuario}" method="post">
+
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="form-group">
+            <label>Nome</label>
+            <input type="text" th:field="*{nome}" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" th:field="*{email}" class="form-control" required>
+        </div>
+        
+        <div class="mb-3">
+    	<label class="form-label">Tipo de Usuário*</label>
+    		<select class="form-select" th:field="*{tipoUsuario}" required>
+        		<option th:each="tipo : ${T(br.com.carometro.usuario.TipoUsuario).values()}" 
+                th:value="${tipo}" 
+                th:text="${tipo.name()}"></option>
+    		</select>
+		</div>
+		
+        <div class="form-group">
+            <label>Senha</label>
+            <input type="password" th:field="*{senha}" class="form-control" required>
+        </div>
+		<!-- Adicionar campo de confirmação de senha -->
+		<div class="mb-3">
+    		<label class="form-label">Confirmar Senha*</label>
+    		<input type="password" class="form-control" name="confirmarSenha" required>
+    		<small class="text-danger" th:if="${senhaError}">As senhas não coincidem</small>
+		</div>
+
+
+
+        <div class="form-group">
+            <label>Perfil</label>
+            <select class="form-control" th:field="*{perfil.id}">
+                <option th:each="perfil : ${listaPerfis}"
+                        th:value="${perfil.id}"
+                        th:text="${perfil.nome}"></option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+    </form>
+</div>
+
+<div th:replace="~{fragmentos/fragmentos :: rodape}"></div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Avaliações de Perfil</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{fragmentos/fragmentos :: cabecalho}"></div>
+
+<div class="container mt-5">
+    <h2>Lista de Avaliações de Perfil</h2>
+    <a th:href="@{/avaliacaoPerfil/formulario}" class="btn btn-success mb-3">Nova Avaliação</a>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Perfil</th>
+            <th>Nota</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="avaliacao : ${avaliacoes}">
+            <td th:text="${avaliacao.id}"></td>
+            <td th:text="${avaliacao.perfil.nome}"></td>
+            <td th:text="${avaliacao.nota}"></td>
+            <td>
+        		<span th:text="${avaliacao.status}" 
+              			th:class="${'badge ' + 
+                         (avaliacao.status == 'APROVADO' ? 'bg-success' : 
+                          avaliacao.status == 'PENDENTE' ? 'bg-warning' : 'bg-danger')}">
+        		</span>
+    		</td>
+            <td>
+                <a th:href="@{'/avaliacaoPerfil/editar/' + ${avaliacao.id}}" class="btn btn-primary btn-sm">Editar</a>
+                <a th:href="@{'/avaliacaoPerfil/excluir/' + ${avaliacao.id}}" class="btn btn-danger btn-sm">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
