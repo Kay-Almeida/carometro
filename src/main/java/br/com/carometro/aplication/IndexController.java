@@ -1,4 +1,4 @@
-package br.com.carometro.home;
+package br.com.carometro.aplication;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

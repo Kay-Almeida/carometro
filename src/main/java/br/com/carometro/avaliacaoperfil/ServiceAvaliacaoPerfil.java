@@ -2,7 +2,6 @@ package br.com.carometro.avaliacaoperfil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import br.com.carometro.avaliacaoperfil.*;
 
 import java.util.List;
 
