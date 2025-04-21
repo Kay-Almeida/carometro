@@ -8,6 +8,6 @@ public class IndexController {
 
     @GetMapping("/")
     public String home() {
-        return "home/index"; // subpasta + nome do HTML (sem .html)
+        return "index"; 
     }
 }
